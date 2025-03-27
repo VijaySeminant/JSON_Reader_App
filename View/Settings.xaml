@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JSON_Reader.View.Settings"
+             xmlns:viewmodel="clr-namespace:JSON_Reader.ViewModel"
+             x:DataType="viewmodel:SettingsViewModel"
+             xmlns:local="clr-namespace:JSON_Reader.Convertor"
+             Title="Settings">
+    <ContentPage.Resources>
+        <local:MandatoryFieldConverter x:Key="MandatoryFldConverter"/>
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+        <VerticalStackLayout HorizontalOptions="Start"
+                             Padding="30,0"
+                             Spacing="25">
+
+            <Label
+                TextDecorations="Underline"
+                FontAttributes="Italic"
+                   HorizontalOptions="Start"  
+                   Text="Configure the JSON files name contains."
+                   Style="{StaticResource SubHeadline}"
+                   SemanticProperties.HeadingLevel="Level4"
+                   SemanticProperties.Description="info" />
+
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Start">
+
+                <Entry  Placeholder="Type the new Source here" FontAttributes="Italic" FontSize="22" WidthRequest="350"
+                       Text="{Binding Newsource}"
+                       ></Entry>
+
+                <Button Command="{Binding AddSourceCommand}"
+                        Clicked="OnAddSourceClicked" 
+                        x:Name="AddNewSourceBtn"
+                    Text="AddNew" 
+                    SemanticProperties.Hint="AddNew"
+                />
+
+                <Button Command="{Binding ResetSourceCommand}"
+                        x:Name="ResetSourceBtn"
+                        Text="Reset" 
+                        SemanticProperties.Hint="Reset"
+                />
+
+                <Button 
+                    Command="{Binding SaveSourceCommand}"
+                    Clicked="OnSaveSourceClicked" 
+                    x:Name="SaveSourceBtn" 
+                    Text="Save" 
+                    SemanticProperties.Hint="Save"
+                />
+
+            </HorizontalStackLayout>
+            <CollectionView WidthRequest="400" ItemsSource="{Binding Source_item_collection}" HorizontalOptions="Start" ItemsLayout="VerticalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+                        <Grid Padding="10"
+                            Margin="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".75*" />
+                                <ColumnDefinition Width=".25*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="{Binding .}"  FontAttributes="Bold" FontSize="22" />
+                            <Button 
+                             
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsViewModel}},Path=DeleteSourceCommand}"
+                                CommandParameter="{Binding .}"
+                            Grid.Column="1"  Text="Delete"  BackgroundColor="Red"/>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<Label FontAttributes="Italic"
+               Text="JSON files name contains."
+               Style="{StaticResource SubHeadline}"
+               SemanticProperties.HeadingLevel="Level5"
+               SemanticProperties.Description="info" />-->
+
+            <!--<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                       x:Class="MyProject.SimplePopup">
+
+            <VerticalStackLayout>
+                <Label Text="This is a very important message!" />
+                <Button Text="OK" 
+                        Clicked="OnOKButtonClicked" />
+            </VerticalStackLayout>
+
+        </toolkit:Popup>-->
+
+            <!--<Label FontAttributes="Italic"
+               HorizontalOptions="Start"  
+               Text="Configure the fields to read from the JSON files"
+               Style="{StaticResource SubHeadline}"
+               SemanticProperties.HeadingLevel="Level4"
+               SemanticProperties.Description="info" />-->
+
+            <!--<VerticalStackLayout HorizontalOptions="Start">
+            
+            <Grid ColumnSpacing="20" 
+                  RowSpacing="20" Margin="20,35,20,20" WidthRequest="500">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".65*" />
+                    <ColumnDefinition Width=".35*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Label Grid.Column="0" Grid.Row="0" Text="Linkedin" FontAttributes="Bold" FontSize="22" />
+                <Button Grid.Column="1" Grid.Row="0" Text="Delete" BackgroundColor="Red"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Facebook" FontAttributes="Bold" FontSize="22"/>
+                <Button Grid.Column="1" Grid.Row="1" Text="Delete"  BackgroundColor="Red"/>
+
+                <Label Grid.Column="0" Grid.Row="2" Text="Google" FontAttributes="Bold" FontSize="22"/>
+                <Button Grid.Column="1" Grid.Row="2" Text="Delete"  BackgroundColor="Red"/>
+
+                <Label Grid.Column="0" Grid.Row="3" Text="Instagram" FontAttributes="Bold" FontSize="22" />
+                <Button Grid.Column="1" Grid.Row="3" Text="Delete"  BackgroundColor="Red"/>
+
+            </Grid>
+
+        </VerticalStackLayout>-->
+
+            <Label TextDecorations="Underline"
+                   FontAttributes="Italic"
+                   HorizontalOptions="Start"  
+                   Text="Configure the fields to read from the JSON files"
+                   Style="{StaticResource SubHeadline}"
+                   SemanticProperties.HeadingLevel="Level4"
+                   SemanticProperties.Description="info" />
+
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Start">
+
+                <!--<Entry  Placeholder="Type the new field here" FontAttributes="Italic" FontSize="22" WidthRequest="350"
+                       Text="{Binding Newfield}"
+                       ></Entry>-->
+
+                <!--<Button Command="{Binding AddFieldCommand}"
+                    x:Name="AddNewFieldBtn"
+                    Text="AddNew" 
+                    SemanticProperties.Hint="AddNew"
+                />-->
+                <Label FontAttributes="Italic"
+                       HorizontalOptions="Start"  
+                       Text="some of the fields are mandatory (below)"
+                       Style="{StaticResource infoText}"
+                       SemanticProperties.HeadingLevel="Level4"
+                       SemanticProperties.Description="info" />
+
+                <Button Command="{Binding ResetFieldCommand}"
+                        x:Name="ResetFieldBtn"
+                        Text="Reset" 
+                        SemanticProperties.Hint="Reset"
+                />
+
+                <Button Command="{Binding SaveFieldCommand}"
+                        Clicked="OnSaveFieldClicked" 
+                        x:Name="SaveFieldBtn"
+                        Text="Save" 
+                        SemanticProperties.Hint="Save"
+                />
+
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="FieldsCollection"
+                WidthRequest="400" ItemsSource="{Binding Field_item_collection}" HorizontalOptions="Start" ItemsLayout="VerticalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+                        <Grid Padding="10"
+                            Margin="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".75*" />
+                                <ColumnDefinition Width=".25*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="{Binding .}"  FontAttributes="Bold" FontSize="22" />
+                            <Button 
+
+                                IsEnabled="{Binding .,Converter={StaticResource MandatoryFldConverter}}"
+                             
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SettingsViewModel}},Path=DeleteFieldCommand}"
+                                CommandParameter="{Binding .}"
+                            Grid.Column="1"  Text="Delete">
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale"
+                                                            Value="1" />
+                                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Red}, Dark={StaticResource Yellow}}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <VisualState x:Name="Disabled">
+                                                <VisualState.Setters>
+
+                                                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />
+
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                            <VisualState x:Name="Pressed">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale"
+                                                            Value="0.8" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="PointerOver" />
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+
+                            </Button>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<VerticalStackLayout HorizontalOptions="Start">
+
+            <Grid ColumnSpacing="20" 
+                     RowSpacing="20" Margin="20,35,20,20" WidthRequest="500">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".65*" />
+                    <ColumnDefinition Width=".35*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Text="Name" FontAttributes="Bold" FontSize="22" />
+                <Button Grid.Column="1" Grid.Row="0" Text="Delete" BackgroundColor="Red"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Email" FontAttributes="Bold" FontSize="22"/>
+                <Button Grid.Column="1" Grid.Row="1" Text="Delete"  BackgroundColor="Red"/>
+
+                <Label Grid.Column="0" Grid.Row="2" Text="Phone" FontAttributes="Bold" FontSize="22"/>
+                <Button Grid.Column="1" Grid.Row="2" Text="Delete"  BackgroundColor="Red"/>
+
+                <Label Grid.Column="0" Grid.Row="3" Text="Website" FontAttributes="Bold" FontSize="22" />
+                <Button Grid.Column="1" Grid.Row="3" Text="Delete"  BackgroundColor="Red"/>
+
+            </Grid>
+
+        </VerticalStackLayout>-->
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+</ContentPage>

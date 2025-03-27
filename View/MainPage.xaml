@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JSON_Reader.MainPage">
+
+    <VerticalStackLayout
+           Padding="30,0"
+           Spacing="25">
+
+        <Label 
+               Text="JSON Reader" FontAttributes="Bold"
+               Style="{StaticResource Headline}"
+               SemanticProperties.HeadingLevel="Level1" />
+
+        <!--<Image
+               Source="dotnet_bot.png"
+               HeightRequest="185"
+               Aspect="AspectFit"
+               SemanticProperties.Description="dot net bot in a hovercraft number nine" />-->
+
+        <VerticalStackLayout
+                   Padding="30,0"
+                   Spacing="25">
+
+            <Label FontAttributes="Italic"
+                       Text="This App reads all JSON files in the selected folder and export it as single excel sheet."
+                       Style="{StaticResource SubHeadline}"
+                       SemanticProperties.HeadingLevel="Level4"
+                       SemanticProperties.Description="info" />
+
+            <Label
+                       Text="Select a folder having JSON files." HorizontalOptions="Start"
+                       Style="{StaticResource SubHeadline2}"
+                       SemanticProperties.HeadingLevel="Level5"
+                       SemanticProperties.Description="info" />
+
+            <Grid ColumnSpacing="20" Margin="20,35,20,20">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+
+                <Entry x:Name="PathEntry"
+                      FontAttributes="Italic" FontSize="22"
+                      Placeholder="JSON Folder Path" IsReadOnly="True"  Grid.Column="0"/>
+                <Button Grid.Column="1"
+                       x:Name="BrowseBtn"
+                       Text="Browse" 
+                       SemanticProperties.Hint="Browse JSON files"
+                       Clicked="OnBrowseClicked" 
+               />
+
+                <Button Grid.Column="2" IsEnabled="False"
+                       x:Name="ExportBtn"
+                       Text="Export" 
+                       SemanticProperties.Hint="Export JSON files as Excel and CSV file"
+                       Clicked="OnExportClicked"
+               />
+
+            </Grid>
+
+            <Label x:Name="LblJsonCount"
+                          Text=""
+                          Style="{StaticResource Headline}"
+                          SemanticProperties.HeadingLevel="Level1" />
+
+            <Label x:Name="LblStatus"
+                          Text=""
+                          Style="{StaticResource Headline}"
+                          SemanticProperties.HeadingLevel="Level1" />
+
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+
+</ContentPage>

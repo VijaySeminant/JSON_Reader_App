@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="JSON_Reader.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:JSON_Reader"
+    xmlns:view="using:JSON_Reader.View"
+
+    Title="JSON_Reader" Shell.FlyoutBehavior="Locked">
+
+    <FlyoutItem Title="Home" 
+                Icon="dotnet_bot.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings"
+                Icon="dotnet_bot.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:Settings}" />
+        </Tab>
+    </FlyoutItem>
+
+</Shell>
