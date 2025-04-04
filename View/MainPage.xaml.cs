@@ -25,7 +25,7 @@ namespace JSON_Reader
         string ConfigFile = "";
         string userBrowsedFolderPath = "";
 
-        DateTime date = DateTime.Now;
+        //DateTime date = DateTime.Now;
         private string dateString = "";
 
         private int jsonFilesCnt = 0;
@@ -44,6 +44,7 @@ namespace JSON_Reader
             InitializeComponent();
             SetAlphabetChar();
         }
+
         void ResetSource()
         {
             lead_website_lst.Clear();
@@ -87,7 +88,6 @@ namespace JSON_Reader
             }
         }
 
-
         private void SetSource()
         {
 
@@ -115,6 +115,7 @@ namespace JSON_Reader
         {
             processedFiles.Clear();
             not_processedFiles.Clear();
+            lstLeads.Clear();
 
             SetSource();
             SetField();
@@ -181,7 +182,12 @@ namespace JSON_Reader
 
         void Move_NonProcessed_JsonFileToFolder()
         {
-            dateString = date.ToString("dd_MM_yyyy_HH_mm_ss");
+            if (string.IsNullOrEmpty(dateString))
+            {
+                DateTime date = DateTime.Now;
+                dateString = date.ToString("dd_MM_yyyy_HH_mm_ss");
+            }
+         
 
             string notprocessed_DirPath = userBrowsedFolderPath + "Not_Processed";
 
@@ -220,7 +226,11 @@ namespace JSON_Reader
 
         void MoveJsonFileToCompletedFolder()
         {
-            dateString = date.ToString("dd_MM_yyyy_HH_mm_ss");
+            if (string.IsNullOrEmpty(dateString))
+            {
+                DateTime date = DateTime.Now;
+                dateString = date.ToString("dd_MM_yyyy_HH_mm_ss");
+            }
 
             string compDirPath = userBrowsedFolderPath + "completed_" + dateString;
 
@@ -262,6 +272,7 @@ namespace JSON_Reader
             }
             return false;
         }
+
         bool IsCompletedorUnprocessedFolder(string filename)
         {
             //don't read files from the completed and unprocessed folder.
@@ -271,6 +282,7 @@ namespace JSON_Reader
             }
             return true;
         }
+
         bool isNOTNullorEmpty(string str)
         {
             return !string.IsNullOrEmpty(str);
@@ -380,7 +392,6 @@ namespace JSON_Reader
             }
         }
 
-
         async void MainFunction()
         {
             //   Define the cancellation token.
@@ -431,6 +442,7 @@ namespace JSON_Reader
 
         void WriteToNewCsv()
         {
+            DateTime date = DateTime.Now;
             dateString = date.ToString("dd_MM_yyyy_HH_mm_ss");
 
             try
@@ -487,6 +499,7 @@ namespace JSON_Reader
 
         void WriteToNewExcel()
         {
+            DateTime date = DateTime.Now;
             dateString = date.ToString("dd_MM_yyyy_HH_mm_ss");
 
             try
@@ -594,7 +607,7 @@ namespace JSON_Reader
                 workbook.SaveAs(newExcelFilename);
 
                 // Close Excel and release resources
-                workbook.Close();
+                workbook.Close(false);
                 excelApp.Quit();
 
             }
@@ -619,6 +632,7 @@ namespace JSON_Reader
         {
             //LblStatus.Text = "Reading " + filePath;
 
+           
 
             using (StreamReader strRead = new StreamReader(filePath))
             {
